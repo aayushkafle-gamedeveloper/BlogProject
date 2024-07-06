@@ -1,0 +1,253 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="#home" class="logo"> Aayush
+            <span>Kafle</span>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#blogs">Blogs</a>
+            <a href="#suscribe" class="btn">Suscribe</a>
+        </nav>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Hi, It's <span>Aayush</span></h1>
+            <h3>I'm a&nbsp; <!-- Non-breaking space -->
+                <span class="bounce">U</span>
+                <span class="bounce">n</span>
+                <span class="bounce">i</span>
+                <span class="bounce">t</span>
+                <span class="bounce">y</span>
+                <span class="bounce">&nbsp;</span> <!-- Non-breaking space -->
+                <span class="bounce">D</span>
+                <span class="bounce">e</span>
+                <span class="bounce">v</span>
+                <span class="bounce">e</span>
+                <span class="bounce">l</span>
+                <span class="bounce">o</span>
+                <span class="bounce">p</span>
+                <span class="bounce">e</span>
+                <span class="bounce">r</span>
+            </h3>
+            <p>I have four years of experience in the game industry, with the last two years at Dark Matter Game
+                Production as
+                the Game Developer, Team Leader and Production Director. I manage the Unity team and direct the entire
+                game
+                development process. My expertise includes gameplay programming, mechanics design, and team management.
+                I've
+                worked on various genres, and we are currently focused on an Ed-tech project aimed at teaching kids
+                through
+                engaging gameplay. Before joining Dark Matter, I was an indie developer, creating my own games and
+                exploring
+                innovative concepts.</p>
+
+            <div class="social-icons">
+                <a href="#">
+                    <i class="bx bxl-github"></i>
+                </a>
+                <a href="#">
+                    <i class="bx bxl-linkedin-square"></i>
+                </a>
+                <a href="#">
+                    <i class="bx bxl-instagram-alt"></i>
+                </a>
+                <a href="#">
+                    <i class="bx bxl-twitter"></i>
+                </a>
+            </div>
+
+            <div class="btn-group">
+                <a href="#" class="btn">Hire</a>
+                <a href="#contact" class="btn">Contact</a>
+            </div>
+        </div>
+        <div class="home-img">
+            <img src="{%static 'image/image.jpg'%}" alt="">
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="{%static 'image/image.jpg'%}" alt="">
+        </div>
+        <div class="about-content">
+            <h2>About <span>Me</span></h2>
+            <p>
+                I have four years of experience in the game industry, with the last two years at Dark Matter Game
+                Production as
+                the Game Developer, Team Leader and Production Director. I manage the Unity team and direct the entire
+                game
+                development process. My expertise includes gameplay programming, mechanics design, and team management.
+                I've
+                worked on various genres, and we are currently focused on an Ed-tech project aimed at teaching kids
+                through
+                engaging gameplay. Before joining Dark Matter, I was an indie developer, creating my own games and
+                exploring
+                innovative concepts.
+            </p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="heading">Services</h2>
+        <div class="services-container">
+            <div class="services-box">
+                <div class="services-info">
+                    <i class="bx bx-code"></i>
+                    <h4>C# Programming</h4>
+                    <p>I have four years of experience in the game industry, with the last two years at Dark Matter Game
+                        Production as the Game Developer, Team Leader and Production Director. My expertise includes
+                        gameplay
+                        programming, mechanics design, and team management.
+                    </p>
+                </div>
+            </div>
+
+            <div class="services-box">
+                <div class="services-info">
+                    <i class="bx bx-code"></i>
+                    <h4>Unity Development</h4>
+                    <p>I have extensive experience in Unity development, focusing on game mechanics and immersive
+                        experiences,
+                        currently working on an Ed-tech project for kids.
+                    </p>
+                </div>
+            </div>
+
+            <div class="services-box">
+                <div class="services-info">
+                    <i class="bx bx-code"></i>
+                    <h4>Team Management</h4>
+                    <p>As a Team Leader and Production Director, I manage the Unity team and direct the game development
+                        process,
+                        ensuring high-quality outcomes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <h2 class="heading">Projects</h2>
+        <div class="projects-container">
+            <a href="Projects/project1.html" class="project-box">
+                <img src="{%static 'image/project1.png'%}" alt="Project 1">
+                <div class="project-info">
+                    <h4>Project Title 1</h4>
+                    <p>Brief description of Project 1.</p>
+                </div>
+            </a>
+            <a href="Projects/project2.html" class="project-box">
+                <img src="{%static 'image/project2.png'%}" alt="Project 2">
+                <div class="project-info">
+                    <h4>Project Title 2</h4>
+                    <p>Brief description of Project 2.</p>
+                </div>
+            </a>
+            <!-- Add more projects as needed -->
+        </div>
+    </section>
+
+    <section class="blogs" id="blogs">
+        <h2 class="heading">Blogs</h2>
+        <div class="blogs-container">
+            {% for blog in blogs %}
+            <a href="/blog/{{blog.id}}/" class="blog-box">
+                <img src="{{blog.image.url}}" alt="Blog {{blog.id}}">
+                <div class="blog-info">
+                    <h4>{{blog.title}}</h4>
+                    <p>{{blog.intro}}</p>
+                </div>
+            </a>
+            {% endfor %}
+            {% comment %} <a href="Blog/blog2.html" class="blog-box">
+                <img src="{%static 'image/project1.png'%}" alt="Blog 2">
+                <div class="blog-info">
+                    <h4>Blog Title 2</h4>
+                    <p>Brief description of Blog 2.</p>
+                </div>
+            </a> {% endcomment %}
+            <!-- Add more blogs as needed -->
+        </div>
+    </section>
+
+
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact<span>Me</span></h2>
+        <form action="">
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" placeholder="Full Name">
+                    <input type="email" placeholder="Email">
+                </div>
+                <div class="input-box">
+                    <input type="number" placeholder="Phone Number">
+                    <input type="text" placeholder="Subject">
+                </div>
+            </div>
+            <div class="input-group-2">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+                <input type="submit" value="Send Message" class="btn">
+            </div>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="#">
+                <i class="bx bxl-github"></i>
+            </a>
+            <a href="#">
+                <i class="bx bxl-linkedin-square"></i>
+            </a>
+            <a href="#">
+                <i class="bx bxl-instagram-alt"></i>
+            </a>
+            <a href="#">
+                <i class="bx bxl-twitter"></i>
+            </a>
+        </div>
+
+        <ul class="list">
+            <li>
+                <a href="#">FAQ</a>
+            </li>
+            <li>
+                <a href="#services">Services</a>
+            </li>
+            <li>
+                <a href="#about">About</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+        </ul>
+
+        <p class="copyright">
+            Aayush Kafle | All Rights Reserved
+        </p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

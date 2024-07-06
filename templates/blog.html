@@ -1,0 +1,33 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Title</title>
+    <link rel="stylesheet" href="{%static 'css/styleblog.css'%}" />
+</head>
+
+<body>
+    <header class="project-header">
+        <img src="{{blogs.0.banner.url}}" alt="Project Banner" class="banner-img">
+    </header>
+
+    <section class="project-details">
+        <h1>{{blogs.0.title}}</h1>
+        <p>{{blogs.0.intro}}</p>
+
+        <div class="video-container">
+            {% if blogs.0.iframe %}
+                {{blogs.0.iframe | safe}}
+            {% else %}
+                <img width="512" height="512" src="{{blogs.0.image.url}}">
+            {% endif %}
+        </div>
+
+        <p>{{blogs.0.discription}}</p>
+    </section>
+</body>
+
+</html>
