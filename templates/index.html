@@ -23,7 +23,7 @@
             <a href="#services">Services</a>
             <a href="#projects">Projects</a>
             <a href="#blogs">Blogs</a>
-            <a href="#suscribe" class="btn">Suscribe</a>
+            <a id="openModalBtn" style="color: black;" class="btn">Suscribe</a>
         </nav>
     </header>
 
@@ -106,6 +106,23 @@
             <a href="#" class="btn">Read More</a>
         </div>
     </section>
+    <div id="toast" class="toast">
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        {{error}}
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        {{error}}
+        {% endfor %}
+        {% endif %}
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    </div>
 
     <section class="services" id="services">
         <h2 class="heading">Services</h2>
@@ -149,21 +166,15 @@
     <section class="projects" id="projects">
         <h2 class="heading">Projects</h2>
         <div class="projects-container">
-            <a href="Projects/project1.html" class="project-box">
-                <img src="{%static 'image/project1.png'%}" alt="Project 1">
+            {% for project in projects %}
+            <a href="/project/{{project.id}}/" class="project-box">
+                <img src="{{project.image.url}}" alt="Project {{project.id}}">
                 <div class="project-info">
-                    <h4>Project Title 1</h4>
-                    <p>Brief description of Project 1.</p>
+                    <h4>{{project.title}}</h4>
+                    <p>{{project.intro}}</p>
                 </div>
             </a>
-            <a href="Projects/project2.html" class="project-box">
-                <img src="{%static 'image/project2.png'%}" alt="Project 2">
-                <div class="project-info">
-                    <h4>Project Title 2</h4>
-                    <p>Brief description of Project 2.</p>
-                </div>
-            </a>
-            <!-- Add more projects as needed -->
+            {% endfor %}
         </div>
     </section>
 
@@ -179,33 +190,26 @@
                 </div>
             </a>
             {% endfor %}
-            {% comment %} <a href="Blog/blog2.html" class="blog-box">
-                <img src="{%static 'image/project1.png'%}" alt="Blog 2">
-                <div class="blog-info">
-                    <h4>Blog Title 2</h4>
-                    <p>Brief description of Blog 2.</p>
-                </div>
-            </a> {% endcomment %}
-            <!-- Add more blogs as needed -->
         </div>
     </section>
 
 
     <section class="contact" id="contact">
-        <h2 class="heading">Contact<span>Me</span></h2>
-        <form action="">
+        <h2 class="heading">Contact<span> Me</span></h2>
+        <form action="" method="post" id="contact-form">
+            {% csrf_token %}
             <div class="input-group">
                 <div class="input-box">
-                    <input type="text" placeholder="Full Name">
-                    <input type="email" placeholder="Email">
+                    {{form.fullname}}
+                    {{form.email}}
                 </div>
                 <div class="input-box">
-                    <input type="number" placeholder="Phone Number">
-                    <input type="text" placeholder="Subject">
+                    {{form.phonenumber}}
+                    {{form.subject}}
                 </div>
             </div>
             <div class="input-group-2">
-                <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+                {{form.message}}
                 <input type="submit" value="Send Message" class="btn">
             </div>
         </form>
@@ -246,8 +250,27 @@
             Aayush Kafle | All Rights Reserved
         </p>
     </footer>
-
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <span class="closeBtn">&times;</span>
+            <h2 style="text-align: center;">Subscribe to our Newsletter</h2>
+            <form id="emailForm" class="form" action="/subscribe/" method="post">
+                {%csrf_token%}
+                <label class="modal-label" for="email">Email:</label>
+                <input class="modal-input" type="email" id="email" name="email" required>
+                <button class="btn">Suscribe</button>
+            </form>
+        </div>
+    </div>
     <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        {% if form.errors%}
+        showToast();
+        {% endif %}
+        {% if messages %}
+        showToast();
+        {% endif %}
+    </script>
 </body>
 
 </html>
