@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from main.models import Blog, Project, Subscriber
+from main.models import Blog, Project, Sociallink, Subscriber
 from main.forms import ContactForm
 from django.contrib import messages
 # Create your views here.
@@ -10,8 +10,10 @@ class IndexView(View):
     def get(self, request):
         blogs = Blog.objects.all()
         projects = Project.objects.all()
+        sociallink = Sociallink.objects.all().first()
+        print(sociallink)
         form = ContactForm()
-        return render(request, "index.html", {'blogs': blogs, 'projects': projects, 'form': form})
+        return render(request, "index.html", {'blogs': blogs, 'projects': projects, 'sociallink':sociallink,'form': form})
 
     def post(self, request):
         form = ContactForm(request.POST)

@@ -44,3 +44,10 @@ class Subscriber(models.Model):
 
     def __str__(self):
         return self.email
+    
+class Sociallink(models.Model):
+    Gitlink = models.TextField()
+    Linkedlink = models.TextField()
+    Discordlink = models.TextField()
+    Youtubelink = models.TextField()
+    Noamelink = models.TextField(null=True, blank=True)
