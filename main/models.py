@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Blog(models.Model):
@@ -45,9 +46,26 @@ class Subscriber(models.Model):
     def __str__(self):
         return self.email
     
-class Sociallink(models.Model):
-    Gitlink = models.TextField()
-    Linkedlink = models.TextField()
-    Discordlink = models.TextField()
-    Youtubelink = models.TextField()
-    Noamelink = models.TextField(null=True, blank=True)
+    
+class SocialLink(models.Model):
+    linked_in=models.URLField(null=True, blank=True)
+    github=models.URLField(null=True, blank=True)
+    facebook=models.URLField(null=True, blank=True)
+    discord=models.URLField(null=True, blank=True)
+    instagram=models.URLField(null=True, blank=True)
+    youtube=models.URLField(null=True,blank=True)
+    twitter=models.URLField(null=True, blank=True)
+    
+
+class Resume(models.Model):
+    resume = models.FileField(null=True, blank=True)
+    
+
+
+class Service(models.Model):
+    icon = models.ImageField(null=True, blank=True)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+
+class Setup(models.Model):
+    profile = models.ImageField()
